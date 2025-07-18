@@ -48,7 +48,7 @@ export class DashboardComponent {
         this.result = data;
       },
       error: (err) => {
-        this.appComponent.showError('Failed to fetch WHOIS data.');
+        this.appComponent.showError('Backend server is unreachable');
         console.error(err);
       },
     });
