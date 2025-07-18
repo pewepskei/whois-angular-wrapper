@@ -15,8 +15,4 @@ RUN npm install
 COPY . .
 
 # Expose Angular dev server port
-EXPOSE 4200
-
-# Start Angular dev server
-CMD ["ng", "serve", "--host", "0.0.0.0"]
-
+EXPOSE 5000
