@@ -30,7 +30,9 @@
           <td class="value">
             <ng-container *ngIf="isArray(result.domain[key]); else plainValue">
               <div class="multi-line">
-                {{ result.domain[key].join('\n') }}
+                <div *ngFor="let item of result.domain[key]" [title]="item">
+                  {{ truncate(item) }}
+                </div>
               </div>
             </ng-container>
             <ng-template #plainValue>{{ result.domain[key] || 'N/A' }}</ng-template>

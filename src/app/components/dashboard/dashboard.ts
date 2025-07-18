@@ -74,5 +74,9 @@ export class DashboardComponent {
   isArray(val: any): boolean {
     return Array.isArray(val);
   }
+
+  truncate(text: string, maxLength: number = 25): string {
+    return text.length <= maxLength ? text : text.slice(0, maxLength - 3) + '...';
+  }
 }
 
