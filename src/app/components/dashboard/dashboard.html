@@ -1,31 +1,52 @@
 <div class="page-container">
   <div class="glass-card">
-    <h1>WHOIS Lookup</h1>
-
-    <div class="form-group">
-      <label for="domain">Domain</label>
-      <input
-        id="domain"
-        type="text"
-        [(ngModel)]="domainInput"
-        placeholder="Enter domain (e.g. example.com)"
-      />
+    <div class="main-header">
+      <h1>WHOIS Lookup</h1>
+      <div class="inputs">
+        <input
+          id="domain"
+          type="text"
+          [(ngModel)]="domainInput"
+          placeholder="Enter domain (e.g. google.com)"
+        />
+        <select id="infoType" [(ngModel)]="infoType">
+          <option disabled selected value="">Select Information Type</option>
+          <option value="all">All Information</option>
+          <option value="contact">Contact Info Only</option>
+          <option value="domain">Domain Info Only</option>
+        </select>
+        <button class="buttones" (click)="fetchData()">Lookup</button>
+      </div>
+      <div *ngIf="error" class="error">{{ error }}</div>
     </div>
-
-    <div class="form-group">
-      <label for="infoType">Information Type</label>
-      <select id="infoType" [(ngModel)]="infoType">
-        <option value="all">All</option>
-        <option value="contact">Contact</option>
-        <option value="domain">Domain</option>
-      </select>
+  </div>
+  <div class="spacer" *ngIf="!result"> </div>
+  <div class="tables" *ngIf="result">
+    <div class="table-container" *ngIf="result.domain">
+      <h2>Domain Info</h2>
+      <table>
+        <tr *ngFor="let key of getObjectKeys(result.domain)">
+          <td class="key">{{ key }}</td>
+          <td class="value">
+            <ng-container *ngIf="isArray(result.domain[key]); else plainValue">
+              <div class="multi-line">
+                {{ result.domain[key].join('\n') }}
+              </div>
+            </ng-container>
+            <ng-template #plainValue>{{ result.domain[key] || 'N/A' }}</ng-template>
+          </td>
+        </tr>
+      </table>
     </div>
-
-    <button (click)="fetchData()">Lookup</button>
-
-    <div *ngIf="error" class="error">{{ error }}</div>
-
-    <pre *ngIf="result">{{ result | json }}</pre>
+    <div class="table-container" *ngIf="result.contact">
+      <h2>Contact Info</h2>
+      <table>
+        <tr *ngFor="let key of getObjectKeys(result.contact)">
+          <td class="key">{{ key }}</td>
+          <td class="value">{{ result.contact[key] || 'N/A' }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 
