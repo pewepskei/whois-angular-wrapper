@@ -25,7 +25,7 @@ npm install -g @angular/cli@16
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/whois-angular-wrapper.git
+git clone https://github.com/pewepskei/whois-angular-wrapper.git
 cd whois-angular-wrapper
 npm install
 ```
