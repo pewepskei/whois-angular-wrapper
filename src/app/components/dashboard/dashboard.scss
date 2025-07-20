@@ -151,7 +151,7 @@ button {
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 4px;
-    margin: 6px auto !important; // center and space inside td
+    margin: 6px auto !important;
   }
 
   .skeleton-text {
@@ -161,7 +161,7 @@ button {
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 6px;
-    margin: 0 auto 16px auto !important; // center and space under
+    margin: 0 auto 16px auto !important;
   }
 }
 
