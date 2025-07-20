@@ -17,6 +17,8 @@ export class DashboardComponent {
   result: any;
   error = '';
   showErrorPopup = false;
+  loading = false;
+
 
   constructor(
     private whoisService: WhoisService,
@@ -26,7 +28,6 @@ export class DashboardComponent {
   fetchData() {
     this.error = '';
     this.showErrorPopup = false;
-
     const domain = this.domainInput.trim();
 
     if (!domain) {
@@ -39,8 +40,12 @@ export class DashboardComponent {
       return;
     }
 
+    this.loading = true;
+    this.result = null;
+
     this.whoisService.getWhoisData(domain, this.infoType).subscribe({
       next: (data) => {
+        this.loading = false;
         if (!data) {
           this.appComponent.showError('Domain is not registered');
           return;
@@ -48,6 +53,7 @@ export class DashboardComponent {
         this.result = data;
       },
       error: (err) => {
+        this.loading = false;
         this.appComponent.showError('Backend server is unreachable');
         console.error(err);
       },

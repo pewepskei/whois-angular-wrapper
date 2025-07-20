@@ -20,9 +20,39 @@
       <div *ngIf="error" class="error">{{ error }}</div>
     </div>
   </div>
-  <div class="spacer" *ngIf="!result"> </div>
-  <div class="tables" *ngIf="result">
-    <div class="table-container" *ngIf="result.domain">
+
+  <!-- ✅ Skeleton Loader (while loading) -->
+  <div class="tables loading-skeleton" *ngIf="loading">
+    <div
+      class="table-container"
+      *ngIf="infoType === 'all' || infoType === 'domain'"
+    >
+      <h2 class="skeleton-text"></h2>
+      <table>
+        <tr *ngFor="let i of [1, 2, 3, 4, 5]">
+          <td class="key"><div class="skeleton-box"></div></td>
+          <td class="value"><div class="skeleton-box"></div></td>
+        </tr>
+      </table>
+    </div>
+
+    <div
+      class="table-container"
+      *ngIf="infoType === 'all' || infoType === 'contact'"
+    >
+      <h2 class="skeleton-text"></h2>
+      <table>
+        <tr *ngFor="let i of [1, 2, 3, 4, 5]">
+          <td class="key"><div class="skeleton-box"></div></td>
+          <td class="value"><div class="skeleton-box"></div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ✅ Result Tables (when done loading) -->
+  <div class="tables" *ngIf="!loading && result">
+    <div class="table-container" *ngIf="infoType === 'all' || infoType === 'domain'">
       <h2>Domain Info</h2>
       <table>
         <tr *ngFor="let key of getObjectKeys(result.domain)">
@@ -40,7 +70,8 @@
         </tr>
       </table>
     </div>
-    <div class="table-container" *ngIf="result.contact">
+
+    <div class="table-container" *ngIf="infoType === 'all' || infoType === 'contact'">
       <h2>Contact Info</h2>
       <table>
         <tr *ngFor="let key of getObjectKeys(result.contact)">
@@ -50,5 +81,8 @@
       </table>
     </div>
   </div>
+
+  <!-- ✅ Spacer when idle -->
+  <div class="spacer" *ngIf="!loading && !result"></div>
 </div>
 

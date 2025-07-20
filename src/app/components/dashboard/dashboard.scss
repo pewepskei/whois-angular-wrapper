@@ -142,3 +142,35 @@ button {
 .spacer {
   flex: 5;
 }
+
+.loading-skeleton {
+  .skeleton-box {
+    height: 16px;
+    max-width: 90%;
+    background: linear-gradient(90deg, #444 25%, #555 50%, #444 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+    margin: 6px auto !important; // center and space inside td
+  }
+
+  .skeleton-text {
+    height: 24px;
+    width: 40%;
+    background: linear-gradient(90deg, #444 25%, #555 50%, #444 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 6px;
+    margin: 0 auto 16px auto !important; // center and space under
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
