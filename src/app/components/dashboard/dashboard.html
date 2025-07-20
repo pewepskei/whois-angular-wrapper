@@ -21,7 +21,6 @@
     </div>
   </div>
 
-  <!-- ✅ Skeleton Loader (while loading) -->
   <div class="tables loading-skeleton" *ngIf="loading">
     <div
       class="table-container"
@@ -50,7 +49,6 @@
     </div>
   </div>
 
-  <!-- ✅ Result Tables (when done loading) -->
   <div class="tables" *ngIf="!loading && result">
     <div class="table-container" *ngIf="infoType === 'all' || infoType === 'domain'">
       <h2>Domain Info</h2>
@@ -82,7 +80,6 @@
     </div>
   </div>
 
-  <!-- ✅ Spacer when idle -->
   <div class="spacer" *ngIf="!loading && !result"></div>
 </div>
 
